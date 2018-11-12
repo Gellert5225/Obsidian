@@ -1,0 +1,3 @@
+[submodule "Obsidian/vendor/spdlog"]
+	path = Obsidian/vendor/spdlog
+	url = https://github.com/gabime/spdlog

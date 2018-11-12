@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include "Obsidian/Application.h"
+#include "Obsidian/Log.h"
 
 // ---Entry Point---------
 #include "Obsidian/EntryPoint.h"
