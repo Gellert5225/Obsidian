@@ -1,3 +1,6 @@
 [submodule "Obsidian/vendor/spdlog"]
 	path = Obsidian/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Obsidian/vendor/GLFW"]
+	path = Obsidian/vendor/GLFW
+	url = https://github.com/Gellert5225/glfw

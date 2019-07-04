@@ -4,6 +4,15 @@
     <Filter Include="Obsidian">
       <UniqueIdentifier>{0E2CB5EF-FAF8-0FFB-2312-FEA20F3E4589}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Obsidian\Events">
+      <UniqueIdentifier>{32FCBA99-9E87-285E-A798-AB5213A3845E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Obsidian.h" />
@@ -16,9 +25,28 @@
     <ClInclude Include="src\Obsidian\EntryPoint.h">
       <Filter>Obsidian</Filter>
     </ClInclude>
+    <ClInclude Include="src\Obsidian\Events\ApplicationEvent.h">
+      <Filter>Obsidian\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Obsidian\Events\Event.h">
+      <Filter>Obsidian\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Obsidian\Events\KeyEvent.h">
+      <Filter>Obsidian\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Obsidian\Events\MouseEvent.h">
+      <Filter>Obsidian\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\Obsidian\Log.h">
       <Filter>Obsidian</Filter>
     </ClInclude>
+    <ClInclude Include="src\Obsidian\Window.h">
+      <Filter>Obsidian</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\obsdpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Obsidian\Application.cpp">
@@ -27,5 +55,9 @@
     <ClCompile Include="src\Obsidian\Log.cpp">
       <Filter>Obsidian</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\obsdpch.cpp" />
   </ItemGroup>
 </Project>
