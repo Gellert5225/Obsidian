@@ -64,18 +64,18 @@ project "Obsidian"
 	
 	filter "configurations:Debug"
 		defines "OBSD_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "OBSD_Release"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "OBSD_DIST"
+		buildoptions "/MD"
 		optimize "On"
-
-	filter { "system:windows", "configurations:Release" }
-		buildoptions "/MT"
 
 project "Sandbox"
 	location "Sandbox"
@@ -115,12 +115,15 @@ project "Sandbox"
 	
 	filter "configurations:Debug"
 		defines "OBSD_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "OBSD_Release"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "OBSD_DIST"
+		buildoptions "/MD"
 		optimize "On"

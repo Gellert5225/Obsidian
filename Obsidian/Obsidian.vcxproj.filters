@@ -37,6 +37,12 @@
     <ClInclude Include="src\Obsidian\Events\MouseEvent.h">
       <Filter>Obsidian\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Obsidian\Layer.h">
+      <Filter>Obsidian</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Obsidian\LayerStack.h">
+      <Filter>Obsidian</Filter>
+    </ClInclude>
     <ClInclude Include="src\Obsidian\Log.h">
       <Filter>Obsidian</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Obsidian\Application.cpp">
+      <Filter>Obsidian</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Obsidian\Layer.cpp">
+      <Filter>Obsidian</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Obsidian\LayerStack.cpp">
       <Filter>Obsidian</Filter>
     </ClCompile>
     <ClCompile Include="src\Obsidian\Log.cpp">
