@@ -13,8 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Obsidian/vendor/GLFW/include"
+IncludeDir["GLAD"] = "Obsidian/vendor/GLAD/include"
 
 include "Obsidian/vendor/GLFW"
+include "Obsidian/vendor/GLAD"
 
 project "Obsidian"
 	location "Obsidian"
@@ -37,12 +39,14 @@ project "Obsidian"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.GLAD}"
 	}
 
 	links
 	{
 		"GLFW",
+		"GLAD",
 		"opengl32.lib"
 	}
 
@@ -54,7 +58,8 @@ project "Obsidian"
 		defines
 		{
 			"OBSD_PLATFORM_WINDOWS",
-			"OBSD_BUILD_DLL"
+			"OBSD_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands 
