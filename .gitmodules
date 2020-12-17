@@ -4,9 +4,6 @@
 [submodule "Obsidian/vendor/GLFW"]
 	path = Obsidian/vendor/GLFW
 	url = https://github.com/Gellert5225/glfw
-[submodule "obsidian/vendor/imgui"]
-	path = obsidian/vendor/imgui
-	url = https://github.com/Gellert5225/imgui
 [submodule "Obsidian/vendor/glm"]
 	path = Obsidian/vendor/glm
 	url = https://github.com/g-truc/glm
