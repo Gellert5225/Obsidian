@@ -1343,6 +1343,9 @@
     <ClCompile Include="src\Obsidian\Application.cpp">
       <Filter>src\Obsidian</Filter>
     </ClCompile>
+    <ClCompile Include="src\Obsidian\ImGui\ImGuiBuild.cpp">
+      <Filter>src\Obsidian\ImGui</Filter>
+    </ClCompile>
     <ClCompile Include="src\Obsidian\ImGui\ImGuiLayer.cpp">
       <Filter>src\Obsidian\ImGui</Filter>
     </ClCompile>
@@ -1364,6 +1367,5 @@
     <ClCompile Include="src\obsdpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Obsidian\ImGui\ImGuiBuild.cpp" />
   </ItemGroup>
 </Project>
