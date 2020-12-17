@@ -1,12 +1,12 @@
 [submodule "Obsidian/vendor/spdlog"]
 	path = Obsidian/vendor/spdlog
 	url = https://github.com/gabime/spdlog
-[submodule "Obsidian/vendor/GLFW"]
-	path = Obsidian/vendor/GLFW
-	url = https://github.com/thecherno/glfw
 [submodule "Obsidian/vendor/glm"]
 	path = Obsidian/vendor/glm
 	url = https://github.com/g-truc/glm
 [submodule "Obsidian/vendor/imgui"]
 	path = Obsidian/vendor/imgui
 	url = https://github.com/thecherno/imgui
+[submodule "Obsidian/vendor/GLFW"]
+	path = Obsidian/vendor/GLFW
+	url = https://github.com/thecherno/GLFW

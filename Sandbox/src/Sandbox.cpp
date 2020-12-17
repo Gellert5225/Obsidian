@@ -1,5 +1,7 @@
 #include <Obsidian.h>
 
+#include "imgui.h"
+
 class ExampleLayer : public Obsidian::Layer {
 public:
 	ExampleLayer()
@@ -10,6 +12,12 @@ public:
 
 		if (Obsidian::Input::IsKeyPresed(OBSD_KEY_TAB))
 			OBSD_TRACE("Tab key pressed");
+	}
+
+	virtual void OnImGuiRender() override {
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World");
+		ImGui::End();
 	}
 
 	void OnEvent(Obsidian::Event& event) override {
