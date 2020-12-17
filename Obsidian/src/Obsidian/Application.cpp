@@ -5,6 +5,7 @@
 #include "Input.h"
 
 #include <GLAD/glad.h>
+#include "glm/glm.hpp"
 
 namespace Obsidian {
 
@@ -18,6 +19,8 @@ namespace Obsidian {
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
+
+		m_ImGuiLayer = std::make_unique<ImGuiLayer>();
 	}
 
 	Application::~Application() {
@@ -50,6 +53,11 @@ namespace Obsidian {
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack)
+				layer->OnImGuiRender();
+			m_ImGuiLayer->End();
 			
 			m_Window->OnUpdate();
 		}

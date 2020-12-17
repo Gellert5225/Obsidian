@@ -16,6 +16,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Obsidian/vendor/GLFW/include"
 IncludeDir["GLAD"] = "Obsidian/vendor/GLAD/include"
 IncludeDir["ImGui"] = "Obsidian/vendor/imgui"
+IncludeDir["glm"] = "Obsidian/vendor/glm"
 
 include "Obsidian/vendor/GLFW"
 include "Obsidian/vendor/GLAD"
@@ -36,7 +37,9 @@ project "Obsidian"
 	files 
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
 	
 	includedirs
@@ -45,7 +48,8 @@ project "Obsidian"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLAD}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -106,7 +110,8 @@ project "Sandbox"
 	includedirs 
 	{
 		"Obsidian/vendor/spdlog/include",
-		"Obsidian/src"
+		"Obsidian/src",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links
