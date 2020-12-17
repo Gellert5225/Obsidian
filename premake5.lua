@@ -1,5 +1,6 @@
 workspace "Obsidian"
 	architecture "x64"
+	startproject "Sandbox"
 
 	configurations
 	{
@@ -14,14 +15,17 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Obsidian/vendor/GLFW/include"
 IncludeDir["GLAD"] = "Obsidian/vendor/GLAD/include"
+IncludeDir["ImGui"] = "Obsidian/vendor/imgui"
 
 include "Obsidian/vendor/GLFW"
 include "Obsidian/vendor/GLAD"
+include "Obsidian/vendor/imgui"
 
 project "Obsidian"
 	location "Obsidian"
 	kind "SharedLib"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -40,19 +44,20 @@ project "Obsidian"
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.GLAD}"
+		"%{IncludeDir.GLAD}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links
 	{
 		"GLFW",
 		"GLAD",
+		"ImGui",
 		"opengl32.lib"
 	}
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -64,22 +69,22 @@ project "Obsidian"
 
 		postbuildcommands 
 		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
 		}
 	
 	filter "configurations:Debug"
 		defines "OBSD_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "OBSD_Release"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "OBSD_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 project "Sandbox"
@@ -87,6 +92,7 @@ project "Sandbox"
 	kind "ConsoleApp"
 
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -110,7 +116,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "10.0.17134.0"
 
 		defines
@@ -120,15 +125,15 @@ project "Sandbox"
 	
 	filter "configurations:Debug"
 		defines "OBSD_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "OBSD_Release"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "OBSD_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"

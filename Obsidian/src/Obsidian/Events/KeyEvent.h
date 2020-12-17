@@ -48,4 +48,19 @@ namespace Obsidian {
 		EVENT_CLASS_TYPE(KeyReleased)
 	};
 
+	class OBSIDIAN_API KeyTypedEvent : public KeyEvent {
+	public:
+		KeyTypedEvent(int keyCode)
+			: KeyEvent(keyCode) {
+		}
+
+		std::string ToString() const override {
+			std::stringstream out;
+			out << "KeyTypedEvent: " << m_KeyCode;
+			return out.str();
+		}
+
+		EVENT_CLASS_TYPE(KeyTyped)
+	};
+
 }

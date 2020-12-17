@@ -19,6 +19,7 @@ class Sandbox : public Obsidian::Application {
 public:
 	Sandbox() {
 		PushLayer(new ExampleLayer());
+		PushOverlay(new Obsidian::ImGuiLayer());
 	}
 	~Sandbox() {}
 };
