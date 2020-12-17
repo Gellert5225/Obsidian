@@ -6,11 +6,18 @@ public:
 		:Layer("Example") { }
 
 	void OnUpdate() override {
-		OBSD_INFO("ExampleLayer::Update");
+		// OBSD_INFO("ExampleLayer::Update");
+
+		if (Obsidian::Input::IsKeyPresed(OBSD_KEY_TAB))
+			OBSD_TRACE("Tab key pressed");
 	}
 
 	void OnEvent(Obsidian::Event& event) override {
-		OBSD_TRACE("{0}", event);
+		// OBSD_TRACE("{0}", event);
+		if (event.GetEventType() == Obsidian::EventType::KeyPressed) {
+			Obsidian::KeyPressedEvent& e = (Obsidian::KeyPressedEvent&)event;
+			OBSD_TRACE("{0}", (char)e.GetKeyCode());
+		}
 	}
 };
 

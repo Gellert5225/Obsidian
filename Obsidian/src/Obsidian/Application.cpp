@@ -2,6 +2,7 @@
 #include "Application.h"
 
 #include "Log.h"
+#include "Input.h"
 
 #include <GLAD/glad.h>
 
@@ -26,8 +27,6 @@ namespace Obsidian {
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::OnWindowClosed));
 
-		OBSD_CORE_TRACE("{0}", e);
-
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();) {
 			(*--it)->OnEvent(e);
 			if (e.Handled) break;
@@ -51,7 +50,7 @@ namespace Obsidian {
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
-
+			
 			m_Window->OnUpdate();
 		}
 	}

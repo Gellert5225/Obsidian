@@ -1,0 +1,14 @@
+#pragma once
+
+#define OBSD_MOUSE_BUTTON_1         0
+#define OBSD_MOUSE_BUTTON_2         1
+#define OBSD_MOUSE_BUTTON_3         2
+#define OBSD_MOUSE_BUTTON_4         3
+#define OBSD_MOUSE_BUTTON_5         4
+#define OBSD_MOUSE_BUTTON_6         5
+#define OBSD_MOUSE_BUTTON_7         6
+#define OBSD_MOUSE_BUTTON_8         7
+#define OBSD_MOUSE_BUTTON_LAST      OBSD_MOUSE_BUTTON_8
+#define OBSD_MOUSE_BUTTON_LEFT      OBSD_MOUSE_BUTTON_1
+#define OBSD_MOUSE_BUTTON_RIGHT     OBSD_MOUSE_BUTTON_2
+#define OBSD_MOUSE_BUTTON_MIDDLE    OBSD_MOUSE_BUTTON_3
