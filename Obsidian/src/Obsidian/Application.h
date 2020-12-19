@@ -7,7 +7,10 @@
 #include "Events/ApplicationEvent.h"
 
 #include "Obsidian/LayerStack.h"
+
 #include "Obsidian/ImGui/ImGuiLayer.h"
+
+#include "Obsidian/Renderer/Shader.h"
 
 namespace Obsidian {
 
@@ -30,6 +33,9 @@ namespace Obsidian {
 		std::unique_ptr<ImGuiLayer> m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+
+		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		std::unique_ptr<Shader> m_Shader;
 
 		bool OnWindowClosed(WindowCloseEvent& e);
 	};
