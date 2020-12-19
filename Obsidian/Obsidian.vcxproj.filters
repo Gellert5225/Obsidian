@@ -1341,6 +1341,9 @@
     <ClInclude Include="src\Obsidian\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Obsidian\Renderer\Shader.h" />
+    <ClInclude Include="src\Obsidian\Renderer\Buffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\Obsidian\Renderer\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Obsidian\Application.cpp">
@@ -1369,5 +1372,8 @@
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Obsidian\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Obsidian\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\Obsidian\Renderer\Renderer.cpp" />
   </ItemGroup>
 </Project>
