@@ -13,8 +13,14 @@
     <Filter Include="src\Obsidian\ImGui">
       <UniqueIdentifier>{EF13822C-DBF7-4282-4458-3DD5305B2D04}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Obsidian\Renderer">
+      <UniqueIdentifier>{4B287440-B794-2F3B-8088-C798ECB351A3}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\OpenGL">
+      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
@@ -87,8 +93,44 @@
     <ClInclude Include="src\Obsidian\MouseButtonCodes.h">
       <Filter>src\Obsidian</Filter>
     </ClInclude>
+    <ClInclude Include="src\Obsidian\Renderer\Buffer.h">
+      <Filter>src\Obsidian\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Obsidian\Renderer\GraphicsContext.h">
+      <Filter>src\Obsidian\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Obsidian\Renderer\OrthographicCamera.h">
+      <Filter>src\Obsidian\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Obsidian\Renderer\RenderCommand.h">
+      <Filter>src\Obsidian\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Obsidian\Renderer\Renderer.h">
+      <Filter>src\Obsidian\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Obsidian\Renderer\RendererAPI.h">
+      <Filter>src\Obsidian\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Obsidian\Renderer\Shader.h">
+      <Filter>src\Obsidian\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Obsidian\Renderer\VertexArray.h">
+      <Filter>src\Obsidian\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Obsidian\Window.h">
       <Filter>src\Obsidian</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>src\Platform\Windows</Filter>
@@ -1338,14 +1380,7 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\Obsidian\Renderer\GraphicsContext.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
-    <ClInclude Include="src\Obsidian\Renderer\Shader.h" />
-    <ClInclude Include="src\Obsidian\Renderer\Buffer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
-    <ClInclude Include="src\Obsidian\Renderer\Renderer.h" />
-    <ClInclude Include="src\Obsidian\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
+    <ClInclude Include="src\Obsidian\Core\Timestep.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Obsidian\Application.cpp">
@@ -1363,6 +1398,39 @@
     <ClCompile Include="src\Obsidian\Log.cpp">
       <Filter>src\Obsidian</Filter>
     </ClCompile>
+    <ClCompile Include="src\Obsidian\Renderer\Buffer.cpp">
+      <Filter>src\Obsidian\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Obsidian\Renderer\OrthographicCamera.cpp">
+      <Filter>src\Obsidian\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Obsidian\Renderer\RenderCommand.cpp">
+      <Filter>src\Obsidian\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Obsidian\Renderer\Renderer.cpp">
+      <Filter>src\Obsidian\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Obsidian\Renderer\RendererAPI.cpp">
+      <Filter>src\Obsidian\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Obsidian\Renderer\Shader.cpp">
+      <Filter>src\Obsidian\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Obsidian\Renderer\VertexArray.cpp">
+      <Filter>src\Obsidian\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
@@ -1372,12 +1440,6 @@
     <ClCompile Include="src\obsdpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
-    <ClCompile Include="src\Obsidian\Renderer\Shader.cpp" />
-    <ClCompile Include="src\Obsidian\Renderer\Buffer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
-    <ClCompile Include="src\Obsidian\Renderer\Renderer.cpp" />
-    <ClCompile Include="src\Obsidian\Renderer\VertexArray.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
+    <ClCompile Include="src\Obsidian\ImGui\ImGUIBuild.cpp" />
   </ItemGroup>
 </Project>

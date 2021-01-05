@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "Window.h"
 
+#include "Obsidian/Core/Timestep.h"
+
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
 
@@ -13,6 +15,7 @@
 #include "Obsidian/Renderer/Shader.h"
 #include "Obsidian/Renderer/Buffer.h"
 #include "Obsidian/Renderer/VertexArray.h"
+#include "Obsidian/Renderer/OrthographicCamera.h"
 
 namespace Obsidian {
 
@@ -37,13 +40,10 @@ namespace Obsidian {
 
 		LayerStack m_LayerStack;
 
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<Shader> m_Shader2;
-		std::shared_ptr<VertexArray> m_VertexArray;
-		std::shared_ptr<VertexArray> m_SquareVA;
-
 		std::unique_ptr<Window> m_Window;
 		std::unique_ptr<ImGuiLayer> m_ImGuiLayer;
+
+		float m_LastFrameTime = 0.0f;
 	};
 	// To be defined in client
 	Application* CreateApplication();

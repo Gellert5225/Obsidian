@@ -3,6 +3,8 @@
 #include "Obsidian/Core.h"
 #include "Obsidian/Events/Event.h"
 
+#include "Obsidian/Core/Timestep.h"
+
 namespace Obsidian {
 
 	class OBSIDIAN_API Layer {
@@ -12,7 +14,7 @@ namespace Obsidian {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 
