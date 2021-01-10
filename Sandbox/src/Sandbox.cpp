@@ -2,6 +2,8 @@
 
 #include "imgui.h"
 
+#include "Platform/OpenGL/OpenGLShader.h"
+
 class ExampleLayer : public Obsidian::Layer {
 public:
 	ExampleLayer()
@@ -17,7 +19,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 		};
 
-		std::shared_ptr<Obsidian::VertexBuffer> vertexBuffer;
+		Obsidian::Ref<Obsidian::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(Obsidian::VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		Obsidian::BufferLayout layout = {
@@ -30,30 +32,31 @@ public:
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<Obsidian::IndexBuffer> indexBuffer;
+		Obsidian::Ref<Obsidian::IndexBuffer> indexBuffer;
 		indexBuffer.reset(Obsidian::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
 		m_SquareVA.reset(Obsidian::VertexArray::Create());
 
-		float squareVertices[3 * 4] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f
+		float squareVertices[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
-		std::shared_ptr<Obsidian::VertexBuffer> squareVB;
+		Obsidian::Ref<Obsidian::VertexBuffer> squareVB;
 		squareVB.reset((Obsidian::VertexBuffer::Create(squareVertices, sizeof(squareVertices))));
 
 		squareVB->SetLayout({
-			{Obsidian::ShaderDataType::Float3, "position"}
-			});
+			{Obsidian::ShaderDataType::Float3, "position"},
+			{Obsidian::ShaderDataType::Float2, "textCoord"}
+		});
 
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<Obsidian::IndexBuffer> squareIB;
+		Obsidian::Ref<Obsidian::IndexBuffer> squareIB;
 		squareIB.reset((Obsidian::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t))));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
@@ -91,7 +94,7 @@ public:
 		
 		)";
 
-		m_Shader.reset(new Obsidian::Shader(vertexSrc, fragmentSrc));
+		m_Shader.reset(Obsidian::Shader::Create(vertexSrc, fragmentSrc));
 
 		std::string vertexSrc2 = R"(
 			#version 330 core
@@ -110,20 +113,62 @@ public:
 		
 		)";
 
-		std::string fragmentSrc2 = R"(
+		std::string flatColorFragmentShaderSrc = R"(
 			#version 330 core
 
 			layout(location = 0) out vec4 color;
 				
 			in vec3 v_position;
 
+			uniform vec3 u_Color;
+
 			void main() {
-				color = vec4(0.2, 0.3, 0.8, 1.0);
+				color = vec4(u_Color, 1.0);
 			}
 		
 		)";
 
-		m_Shader2.reset(new Obsidian::Shader(vertexSrc2, fragmentSrc2));
+		m_FlatColorShader.reset(Obsidian::Shader::Create(vertexSrc2, flatColorFragmentShaderSrc));
+
+		std::string textureVertexShaderSrc = R"(
+			#version 330 core
+
+			layout(location = 0) in vec3 position;
+			layout(location = 1) in vec2 textCoord;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec2 v_TextCoord;
+			
+			void main() {
+				v_TextCoord = textCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(position, 1.0);
+			}
+		
+		)";
+
+		std::string textureFragmentShaderSrc = R"(
+			#version 330 core
+
+			layout(location = 0) out vec4 color;
+				
+			in vec2 v_TextCoord;
+
+			uniform sampler2D u_Texture;
+
+			void main() {
+				color = texture(u_Texture, v_TextCoord);
+			}
+		
+		)";
+
+		m_textureShader.reset(Obsidian::Shader::Create(textureVertexShaderSrc, textureFragmentShaderSrc));
+
+		m_Texture = Obsidian::Texture2D::Create("assets/textures/Checkerboard_gray.png");
+
+		std::dynamic_pointer_cast<Obsidian::OpenGLShader>(m_textureShader)->Bind();
+		std::dynamic_pointer_cast<Obsidian::OpenGLShader>(m_textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Obsidian::Timestep ts) override {
@@ -154,34 +199,47 @@ public:
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
+		std::dynamic_pointer_cast<Obsidian::OpenGLShader>(m_FlatColorShader)->Bind();
+		std::dynamic_pointer_cast<Obsidian::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+
 		for (int i = 0; i < 20; i++) {
 			for (int j = 0; j < 20; j++) {
 				glm::vec3 position(i * 0.11f, j * 0.11f, 0.0f);
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * scale;
-				Obsidian::Renderer::Submit(m_SquareVA, m_Shader2, transform);
+				
+				Obsidian::Renderer::Submit(m_SquareVA, m_FlatColorShader, transform);
 			}
 		}
-		Obsidian::Renderer::Submit(m_VertexArray, m_Shader);
+
+		m_Texture->Bind();
+		Obsidian::Renderer::Submit(m_SquareVA, m_textureShader, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		//Obsidian::Renderer::Submit(m_VertexArray, m_Shader);
 
 		Obsidian::Renderer::EndScene();
 	}
 
 	virtual void OnImGuiRender() override {
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
+		ImGui::End();
 	}
 
 	void OnEvent(Obsidian::Event& event) override {
 	}
 
 private:
-	std::shared_ptr<Obsidian::Shader> m_Shader;
-	std::shared_ptr<Obsidian::Shader> m_Shader2;
-	std::shared_ptr<Obsidian::VertexArray> m_VertexArray;
-	std::shared_ptr<Obsidian::VertexArray> m_SquareVA;
+	Obsidian::Ref<Obsidian::Shader> m_Shader;
+	Obsidian::Ref<Obsidian::Shader> m_FlatColorShader, m_textureShader;
+	Obsidian::Ref<Obsidian::VertexArray> m_VertexArray;
+	Obsidian::Ref<Obsidian::VertexArray> m_SquareVA;
+	Obsidian::Ref<Obsidian::Texture2D> m_Texture;
 
 	glm::vec3 m_CameraPosition;
 	float m_CameraMoveSpeed = 5.0f;
 	float m_CameraRotation = 0.0f;
 	float m_CameraRotationSpeed = 90.0f;
+
+	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 
 	Obsidian::OrthographicCamera m_Camera;
 };

@@ -22,6 +22,7 @@
 #include "Obsidian/Renderer/Renderer.h"
 #include "Obsidian/Renderer/Shader.h"
 #include "Obsidian/Renderer/VertexArray.h"
+#include "Obsidian/Renderer/Texture.h"
 
 // ---Entry Point---------
 #include "Obsidian/EntryPoint.h"

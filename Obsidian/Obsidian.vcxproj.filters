@@ -7,6 +7,9 @@
     <Filter Include="src\Obsidian">
       <UniqueIdentifier>{052F2F20-F191-BEC4-9A17-F77A86598A47}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Obsidian\Core">
+      <UniqueIdentifier>{7D7E2747-E994-25DD-320C-B1FE9E61F664}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Obsidian\Events">
       <UniqueIdentifier>{492323B4-B584-00C2-3EF2-4674AA523781}</UniqueIdentifier>
     </Filter>
@@ -46,6 +49,9 @@
     <Filter Include="vendor\glm\glm\gtx">
       <UniqueIdentifier>{B3A6A76B-9F8A-68C1-08EB-6214F4ED5243}</UniqueIdentifier>
     </Filter>
+    <Filter Include="vendor\stb_image">
+      <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Obsidian.h">
@@ -56,6 +62,9 @@
     </ClInclude>
     <ClInclude Include="src\Obsidian\Core.h">
       <Filter>src\Obsidian</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Obsidian\Core\Timestep.h">
+      <Filter>src\Obsidian\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Obsidian\EntryPoint.h">
       <Filter>src\Obsidian</Filter>
@@ -114,6 +123,9 @@
     <ClInclude Include="src\Obsidian\Renderer\Shader.h">
       <Filter>src\Obsidian\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Obsidian\Renderer\Texture.h">
+      <Filter>src\Obsidian\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Obsidian\Renderer\VertexArray.h">
       <Filter>src\Obsidian\Renderer</Filter>
     </ClInclude>
@@ -127,6 +139,12 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
@@ -1380,11 +1398,16 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\Obsidian\Core\Timestep.h" />
+    <ClInclude Include="vendor\stb_image\stb_image.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Obsidian\Application.cpp">
       <Filter>src\Obsidian</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Obsidian\ImGui\ImGUIBuild.cpp">
+      <Filter>src\Obsidian\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Obsidian\ImGui\ImGuiLayer.cpp">
       <Filter>src\Obsidian\ImGui</Filter>
@@ -1416,6 +1439,9 @@
     <ClCompile Include="src\Obsidian\Renderer\Shader.cpp">
       <Filter>src\Obsidian\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Obsidian\Renderer\Texture.cpp">
+      <Filter>src\Obsidian\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Obsidian\Renderer\VertexArray.cpp">
       <Filter>src\Obsidian\Renderer</Filter>
     </ClCompile>
@@ -1426,6 +1452,12 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
@@ -1440,6 +1472,8 @@
     <ClCompile Include="src\obsdpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Obsidian\ImGui\ImGUIBuild.cpp" />
+    <ClCompile Include="vendor\stb_image\stb_image.cpp">
+      <Filter>vendor\stb_image</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
